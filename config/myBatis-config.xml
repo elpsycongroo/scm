@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<!-- 通过别名简化对类的使用 -->
+<typeAliases>
+	<!-- <typeAlias type="cn.itcast.entity.Dept" alias="Dept" /> -->	
+	<!-- 通过Package 直接指定Package的名字 mybatis自动扫描指定包下面的javabean  -->
+	<!-- 并且默认设置一个别名 默认的名字为非限定类名作为它的别名 -->
+	<package name="cn.itcast.entity"/>
+</typeAliases>
+	<!-- <mappers>
+		<mapper resource="cn/itcast/entity/DeptMapper.xml" />
+	</mappers>	 -->	
+</configuration>

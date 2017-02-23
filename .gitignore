@@ -61,3 +61,16 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+WebRoot/WEB-INF/classes/applicationContext.xml
+WebRoot/WEB-INF/classes/cn/itcast/entity/DeptMapper.xml
+WebRoot/WEB-INF/classes/myBatis-config.xml
+WebRoot/WEB-INF/classes/log4j.properties
+WebRoot/WEB-INF/classes/spring-mvc.xml
+.classpath
+.settings/.jsdtscope
+.settings/org.eclipse.wst.common.component
+.project
+.settings/org.eclipse.wst.jsdt.ui.superType.name
+.settings/org.eclipse.jdt.core.prefs
+.settings/org.eclipse.wst.common.project.facet.core.xml
+.settings/org.eclipse.wst.jsdt.ui.superType.container
