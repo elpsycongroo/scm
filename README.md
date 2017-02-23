@@ -11,11 +11,13 @@ Java
 |4|JQuery|2.0|
 |5|EasyUI|1.3.5|
 ##开发环境
-* 操作系统  Windows 10
-* 开发工具 MyEclipse 2016 CI6
-* 数据库 MySQL 5.5
-* Web容器 Tomcat 7/Tomcat 6
-* JDK JDK7
+ 类型|名称及版本
+ ---|---
+ 操作系统|  Windows 10
+ 开发工具| MyEclipse 2016 CI6
+ 数据库 |MySQL 5.5
+ Web容器 |Tomcat 7/Tomcat 6
+ JDK |JDK7
 
 ##包约定
 
@@ -31,7 +33,7 @@ Java
 * 编码为UTF-8
 * 非必要情况不要设置自定义约束和非空约束
 * 尽量避免设置外键约束
-- SQL语句使用完成语法`(列名,列名)values(值,值)`便于后期增加字段和维护
+- SQL语句使用完整语法`(列名,列名)values(值,值)`便于后期增加字段和维护
 
 ##分层约定
 
