@@ -14,8 +14,26 @@ public class SupplierServiceImpl implements SupplierService {
 	private SupplierMapper supplierMapper;
 	
 	@Override
-	public void insertSupplier(Supplier supplier) throws Exception {
-		supplierMapper.insertSupplier(supplier);
+	public void insert(Supplier supplier) throws Exception {
+		supplierMapper.insert(supplier);
+	}
+
+	@Override
+	public void update(Supplier entity) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void delete(Supplier entity) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Supplier select(Supplier entity) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -1,5 +1,7 @@
 package cn.itcast.dao;
 
-public interface AccountMapper {
+import cn.itcast.entity.Account;
+
+public interface AccountMapper extends BaseMapper<Account> {
     
 }
