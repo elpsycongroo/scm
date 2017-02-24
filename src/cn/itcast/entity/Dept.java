@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class Dept implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
 	private Integer deptId;
 	private String deptName;
 	private String deptAddress;
