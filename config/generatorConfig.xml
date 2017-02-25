@@ -33,11 +33,11 @@
 		<sqlMapGenerator targetPackage="cn.itcast.dao"
 			targetProject="SCM/src" />
 		<javaClientGenerator type="XMLMAPPER" targetPackage="cn.itcast.dao" targetProject="SCM/src" />
-
+<!--
 		<table tableName="account" domainObjectName="Account" /> 
 			
 		<table tableName="supplier" domainObjectName="Supplier" />
-		<!--
+		
 			<table tableName="sys_param" domainObjectName="SysParam" />
 				  
 				<table tableName="account_records" domainObjectName="AccountRecords" />
@@ -45,6 +45,7 @@
 				<table tableName="buy_order_detail" domainObjectName="BuyOrderDetail" />
 				
 				<table tableName="goods" domainObjectName="Goods" />-->
+				<table tableName="store_house" domainObjectName="StoreHouse" />
 	
 	</context>
 </generatorConfiguration>

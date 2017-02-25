@@ -8,6 +8,8 @@
     <result column="sup_phone" property="supPhone" jdbcType="VARCHAR" />
     <result column="sup_address" property="supAddress" jdbcType="VARCHAR" />
     <result column="sup_remark" property="supRemark" jdbcType="VARCHAR" />
+    <result column="sup_pay" property="supPay" jdbcType="DECIMAL" />
+    <result column="sup_type" property="supType" jdbcType="VARCHAR" />
   </resultMap>
   <insert id="insert" parameterType="Supplier">
   		insert into supplier (sup_name) values(#{supName})

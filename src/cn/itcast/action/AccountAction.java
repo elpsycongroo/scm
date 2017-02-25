@@ -1,9 +1,7 @@
 package cn.itcast.action;
 
 import javax.annotation.Resource;
-import javax.jms.Session;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -13,7 +11,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import cn.itcast.entity.Account;
 import cn.itcast.entity.Supplier;
 import cn.itcast.service.AccountService;
-import cn.itcast.service.SupplierService;
 
 @Controller
 @RequestMapping("/account")

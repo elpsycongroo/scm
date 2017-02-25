@@ -3,11 +3,11 @@
 <%@include file="/common/common.jspf"%>
 <html>
 <head>
-	<title></title>
-	<style type="text/css">
-		.searchbox {
-			margin: -2;
-		}
+<title></title>
+<style type="text/css">
+.searchbox {
+	margin: -2;
+}
 </style>
 
 

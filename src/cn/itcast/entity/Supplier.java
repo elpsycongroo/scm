@@ -1,6 +1,7 @@
 package cn.itcast.entity;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 public class Supplier implements Serializable {
     
@@ -17,6 +18,10 @@ public class Supplier implements Serializable {
     private String supAddress;
 
     private String supRemark;
+    
+    private BigDecimal supPay;
+    
+    private String supType;
 
     public Integer getSupId() {
         return supId;
@@ -65,6 +70,22 @@ public class Supplier implements Serializable {
     public void setSupRemark(String supRemark) {
         this.supRemark = supRemark == null ? null : supRemark.trim();
     }
+
+	public BigDecimal getSupPay() {
+		return supPay;
+	}
+
+	public void setSupPay(BigDecimal supPay) {
+		this.supPay = supPay;
+	}
+
+	public String getSupType() {
+		return supType;
+	}
+
+	public void setSupType(String supType) {
+		this.supType = supType;
+	}
 
 	@Override
 	public String toString() {

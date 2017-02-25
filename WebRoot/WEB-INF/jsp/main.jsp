@@ -46,6 +46,11 @@
 						title="商品管理"
 						style="text-decoration: none;display: block;font-weight:bold;">商品管理</a>
 					</li>
+					<li style="padding: 6px;"><a
+						href="${proPath}/base/goURL/storeHouse/storeHouselist.action"
+						title="仓库管理"
+						style="text-decoration: none;display: block;font-weight:bold;">仓库管理</a>
+					</li>
 				</ul>
 			</div>
 		</div>
