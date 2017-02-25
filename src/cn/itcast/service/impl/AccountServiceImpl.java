@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import cn.itcast.dao.AccountMapper;
 import cn.itcast.entity.Account;
+import cn.itcast.entity.Page;
 import cn.itcast.service.AccountService;
 
 @Service("accountService")
@@ -40,6 +41,17 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public Account login(Account account) {
 		return accountMapper.login(account);
+	}
+
+	@Override
+	public Page<Account> selectPage(Page<Account> page) {
+		return null;
+	}
+
+	@Override
+	public Page<Account> selectPageUseDyc(Page<Account> page) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 

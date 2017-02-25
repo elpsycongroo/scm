@@ -15,7 +15,8 @@
 <script>
 	$(function() {
 		$('#dg').datagrid({
-			url : '#',
+			//url : '${proPath}/supplier/selectPage.action',//关键字查询
+			url : '${proPath}/supplier/selectPageUseDyc.action', //多条件查询
 			fitColumns : true,
 			nowrap : true,
 			//idField
@@ -23,7 +24,13 @@
 			rownumbers : true,
 			pageSize : 5,
 			pageList : [ 3, 5, 10 ],
-			//queryParams:{},
+			queryParams : {
+				//keyWord : '%%'
+				supId : '',
+				supName : '%%',
+				supLinkman : '%%',
+				supPhone : '%%',
+			},
 			toolbar : [ {
 				iconCls : 'icon-edit',
 				text : '新增',
@@ -43,63 +50,77 @@
 					alert('删除按钮')
 				}
 			}, '-', {
-				text : "<input type='text' id='ss' name='keyWord'/>"
-			} ],
+				text : "编号：<input type='text' id='supId' name='supId'/>"
+			}, '-', {
+				text : "供应商名称：<input type='text' id='supName' name='supName'/>"
+			}, '-', {
+				text : "联系人：<input type='text' id='supLinkman' name='supLinkman'/>"
+			}, '-', {
+				text : "电话：<input type='text' id='supPhone' name='supPhone'/>"
+			}],
 
 			columns : [ [
 				{
 					checkbox : true
 				},
 				{
-					field : 'supid',
-					title : '编号',
+					field : 'supId',
+					title : '供应商编号',
 					width : 100
 				},
 				{
-					field : 'supname',
+					field : 'supName',
 					title : '供应商名称',
 					width : 100
 				},
 				{
-					field : 'suplinkman',
+					field : 'supLinkman',
 					title : '联系人',
 					width : 100,
 					align : 'right'
 				},
 				{
-					field : 'supphone',
+					field : 'supPhone',
 					title : '电话',
 					width : 100
 				},
 				{
-					field : 'supaddress',
+					field : 'supAddress',
 					title : '地址',
 					width : 100
 				},
 				{
-					field : 'supremark',
+					field : 'supRemark',
 					title : '备注',
 					width : 100
 				},
 				{
-					field : 'suppay',
+					field : 'supPay',
 					title : '期初应付',
 					width : 100
 				},
 				{
-					field : 'suptype',
+					field : 'supType',
 					title : '类型',
 					width : 100
 				}
 			] ]
 		});
 		//搜索框
-		$('#ss').searchbox({
+		$('#supPhone').searchbox({
 			searcher : function(value, name) {
-				alert(value + "," + name)
+			alert($('#supId').val()+","+$('#supName').val+","+$('#supLinkman').val()+","+value);
+				$('#dg').datagrid('load', {
+					//keyWord : '%'+value+'%',
+					supId : $('#supId'),
+					supName : '%' + $('#supName') + '%',
+					supLinkman : '%' + $('#supLinkman') + '%',
+					supPhone : '%' + value + '%',
+				});
 			},
-			prompt : '输入要搜索的供应商名称'
+			prompt : '搜索...'
 		});
+		console.log($('#supId'));
 	});
 </script>
 

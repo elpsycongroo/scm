@@ -1,18 +1,89 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="cn.itcast.dao.SupplierMapper" >
-  <resultMap id="supplierResultMap" type="cn.itcast.entity.Supplier" >
-    <id column="sup_id" property="supId" jdbcType="INTEGER" />
-    <result column="sup_name" property="supName" jdbcType="VARCHAR" />
-    <result column="sup_linkman" property="supLinkman" jdbcType="VARCHAR" />
-    <result column="sup_phone" property="supPhone" jdbcType="VARCHAR" />
-    <result column="sup_address" property="supAddress" jdbcType="VARCHAR" />
-    <result column="sup_remark" property="supRemark" jdbcType="VARCHAR" />
-    <result column="sup_pay" property="supPay" jdbcType="DECIMAL" />
-    <result column="sup_type" property="supType" jdbcType="VARCHAR" />
-  </resultMap>
-  <insert id="insert" parameterType="Supplier">
-  		insert into supplier (sup_name) values(#{supName})
-  </insert>
-  
+<mapper namespace="cn.itcast.dao.SupplierMapper">
+	<resultMap id="supplierResultMap" type="cn.itcast.entity.Supplier">
+		<id column="sup_id" property="supId" jdbcType="INTEGER" />
+		<result column="sup_name" property="supName" jdbcType="VARCHAR" />
+		<result column="sup_linkman" property="supLinkman" jdbcType="VARCHAR" />
+		<result column="sup_phone" property="supPhone" jdbcType="VARCHAR" />
+		<result column="sup_address" property="supAddress" jdbcType="VARCHAR" />
+		<result column="sup_remark" property="supRemark" jdbcType="VARCHAR" />
+		<result column="sup_pay" property="supPay" jdbcType="DECIMAL" />
+		<result column="sup_type" property="supType" jdbcType="VARCHAR" />
+	</resultMap>
+	<insert id="insert" parameterType="Supplier">
+		insert into supplier (sup_name) values(#{supName})
+	</insert>
+	<!-- 通过关键字分页查询，返回数据集 -->
+	<select id="selectPageList" parameterType="page" resultMap="supplierResultMap">
+		select * from supplier where sup_name like #{keyWord} limit
+		#{start},#{rows}
+	</select>
+	<!-- 查询总记录数 -->
+	<select id="selectPageCount" parameterType="page" resultType="Integer">
+		select count(1) from supplier where sup_name like #{keyWord};
+	</select>
+	<!-- 通过多条件分页查询 返回数据集 -->
+	<select id="selectPageListUseDyc" parameterType="page"
+		resultMap="supplierResultMap">
+		select * from supplier
+		<where>
+			<if test="paramEntity.supId!=null">
+				and sup_Id like #{paramEntity.supId}
+			</if>
+			<if test="paramEntity.supName!=null">
+				and sup_name like #{paramEntity.supName}
+			</if>
+			<if test="paramEntity.supLinkman!=null">
+				and sup_Linkman like #{paramEntity.supLinkman}
+			</if>
+			<if test="paramEntity.supPhone!=null">
+				and sup_phone like #{paramEntity.supPhone}
+			</if>
+			<if test="paramEntity.supAddress!=null">
+				and sup_address like #{paramEntity.supAddress}
+			</if>
+			<if test="paramEntity.supRemark!=null">
+				and sup_remark like #{paramEntity.supRemark}
+			</if>
+			<if test="paramEntity.supPay!=null">
+				and sup_pay like #{paramEntity.supPay}
+			</if>
+			<if test="paramEntity.supType!=null">
+				and sup_type like #{paramEntity.supType}
+			</if>
+		</where>
+		limit #{start},#{rows}
+	</select>
+	<!-- 通过多条件分类查询，返回总记录数 -->
+	<select id="selectPageCountUseDyc" parameterType="page" resultType="Integer">
+		select count(1) from supplier 
+		<where>
+			<if test="paramEntity.supId!=null">
+				and sup_Id like #{paramEntity.supId}
+			</if>
+			<if test="paramEntity.supName!=null">
+				and sup_name like #{paramEntity.supName}
+			</if>
+			<if test="paramEntity.supLinkman!=null">
+				and sup_Linkman like #{paramEntity.supLinkman}
+			</if>
+			<if test="paramEntity.supPhone!=null">
+				and sup_phone like #{paramEntity.supPhone}
+			</if>
+			<if test="paramEntity.supAddress!=null">
+				and sup_address like #{paramEntity.supAddress}
+			</if>
+			<if test="paramEntity.supRemark!=null">
+				and sup_remark like #{paramEntity.supRemark}
+			</if>
+			<if test="paramEntity.supPay!=null">
+				and sup_pay like #{paramEntity.supPay}
+			</if>
+			<if test="paramEntity.supType!=null">
+				and sup_type like #{paramEntity.supType}
+			</if>
+		</where>
+	</select>
 </mapper>
+

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import cn.itcast.dao.SupplierMapper;
+import cn.itcast.entity.Page;
 import cn.itcast.entity.Supplier;
 import cn.itcast.service.SupplierService;
 
@@ -34,6 +35,20 @@ public class SupplierServiceImpl implements SupplierService {
 	public Supplier select(Supplier entity) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public Page<Supplier> selectPage(Page<Supplier> page) {
+		page.setList(supplierMapper.selectPageList(page));
+		page.setTotalRecord(supplierMapper.selectPageCount(page));
+		return page;
+	}
+
+	@Override
+	public Page<Supplier> selectPageUseDyc(Page<Supplier> page) {
+		page.setList(supplierMapper.selectPageListUseDyc(page));
+		page.setTotalRecord(supplierMapper.selectPageCountUseDyc(page));
+		return page;
 	}
 
 }

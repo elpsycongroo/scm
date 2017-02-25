@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import cn.itcast.dao.StoreHouseMapper;
+import cn.itcast.entity.Page;
 import cn.itcast.entity.StoreHouse;
 import cn.itcast.service.StoreHouseService;
 
@@ -33,6 +34,18 @@ public class StoreHouseServiceImpl implements StoreHouseService {
 
 	@Override
 	public StoreHouse select(StoreHouse entity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Page<StoreHouse> selectPage(Page<StoreHouse> page) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Page<StoreHouse> selectPageUseDyc(Page<StoreHouse> page) {
 		// TODO Auto-generated method stub
 		return null;
 	}
