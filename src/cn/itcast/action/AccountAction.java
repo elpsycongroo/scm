@@ -43,4 +43,6 @@ public class AccountAction extends BaseAction {
 		supplier.setSupName("supName1");
 		return supplier;
 	}
+	
+	
 }
