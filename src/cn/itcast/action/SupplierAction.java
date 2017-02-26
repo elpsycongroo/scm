@@ -49,10 +49,10 @@ public class SupplierAction extends BaseAction {
 		page.setParamEntity(supplier);
 		System.out.println("--page:"+page);
 		Page<Supplier> p = supplierService.selectPageUseDyc(page);		
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("total", p.getTotalRecord());
-		map.put("rows", p.getList());
-		return map;
+//		Map<String, Object> map = new HashMap<String, Object>();
+//		map.put("total", p.getTotalRecord());
+//		map.put("rows", p.getList());
+		return p.getPageMap();
 	}
 	
 	@RequestMapping("/doAjax")

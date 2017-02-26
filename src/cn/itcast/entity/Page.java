@@ -1,7 +1,9 @@
 package cn.itcast.entity;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Page<T> implements Serializable {
 
@@ -15,6 +17,7 @@ public class Page<T> implements Serializable {
 	//多条件查询
 	private T paramEntity;//多条件查询
 	private Integer start;//开始记录数 需要计算
+	private Map<String, Object> pageMap = new HashMap<String, Object>();//返回map
 	public Integer getPage() {
 		return page;
 	}
@@ -27,16 +30,18 @@ public class Page<T> implements Serializable {
 	public void setRows(Integer rows) {
 		this.rows = rows;
 	}
-	public Integer getTotalRecord() {
-		return totalRecord;
-	}
+//	public Integer getTotalRecord() {
+//		return totalRecord;
+//	}
 	public void setTotalRecord(Integer totalRecord) {
+		pageMap.put("total", totalRecord);
 		this.totalRecord = totalRecord;
 	}
-	public List<T> getList() {
-		return list;
-	}
+//	public List<T> getList() {
+//		return list;
+//	}
 	public void setList(List<T> list) {
+		pageMap.put("rows", list);
 		this.list = list;
 	}
 	public String getKeyWord() {
@@ -58,6 +63,13 @@ public class Page<T> implements Serializable {
 	public void setStart(Integer start) {
 		this.start = start;
 	}
+	//setList setTotalRecord的动作在service中就已经调用
+	public Map<String, Object> getPageMap() {
+		return pageMap;
+	}
+//	public void setPageMap(Map<String, Object> pageMap) {
+//		this.pageMap = pageMap;
+//	}
 	@Override
 	public String toString() {
 		return "Page [page=" + page + ", rows=" + rows + ", totalRecord=" + totalRecord

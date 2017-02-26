@@ -26,16 +26,16 @@
 			pageList : [ 3, 5, 10 ],
 			queryParams : {
 				//keyWord : '%%'
-				supId : '',
+				//supId : '',
 				supName : '%%',
 				supLinkman : '%%',
 				supPhone : '%%',
 			},
 			toolbar : [ {
-				iconCls : 'icon-edit',
+				iconCls : 'icon-add',
 				text : '新增',
 				handler : function() {
-					alert('编辑按钮')
+					alert('新增按钮')
 				}
 			}, '-', {
 				iconCls : 'icon-edit',
@@ -50,13 +50,11 @@
 					alert('删除按钮')
 				}
 			}, '-', {
-				text : "编号：<input type='text' id='supId' name='supId'/>"
+				text : "供应商名称：<input type='text' id='supName' name='supName' style='width:100'/>"
 			}, '-', {
-				text : "供应商名称：<input type='text' id='supName' name='supName'/>"
+				text : "联系人：<input type='text' id='supLinkman' name='supLinkman' style='width:100'/>"
 			}, '-', {
-				text : "联系人：<input type='text' id='supLinkman' name='supLinkman'/>"
-			}, '-', {
-				text : "电话：<input type='text' id='supPhone' name='supPhone'/>"
+				text : "电话：<input type='text' id='supPhone' name='supPhone' style='width:100'/>"
 			}],
 
 			columns : [ [
@@ -109,12 +107,9 @@
 		//搜索框
 		$('#supPhone').searchbox({
 			searcher : function(value, name) {
-			alert($('#supId').val()+","+$('#supName').val+","+$('#supLinkman').val()+","+value);
 				$('#dg').datagrid('load', {
-					//keyWord : '%'+value+'%',
-					supId : $('#supId'),
-					supName : '%' + $('#supName') + '%',
-					supLinkman : '%' + $('#supLinkman') + '%',
+					supName : '%' + $('#supName').val() + '%',
+					supLinkman : '%' + $('#supLinkman').val() + '%',
 					supPhone : '%' + value + '%',
 				});
 			},
