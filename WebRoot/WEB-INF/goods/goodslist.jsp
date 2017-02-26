@@ -25,10 +25,10 @@
 			pageList : [ 3, 5, 10 ],
 			//queryParams:{},
 			toolbar : [ {
-				iconCls : 'icon-edit',
+				iconCls : 'icon-add',
 				text : '新增',
 				handler : function() {
-					alert('编辑按钮')
+					alert('新增按钮')
 				}
 			}, '-', {
 				iconCls : 'icon-edit',

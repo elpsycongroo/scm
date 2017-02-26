@@ -46,8 +46,9 @@ public class StoreHouseServiceImpl implements StoreHouseService {
 
 	@Override
 	public Page<StoreHouse> selectPageUseDyc(Page<StoreHouse> page) {
-		// TODO Auto-generated method stub
-		return null;
+		page.setList(storeHouseMapper.selectPageListUseDyc(page));
+		page.setTotalRecord(storeHouseMapper.selectPageCountUseDyc(page));
+		return page;
 	}
 
 }

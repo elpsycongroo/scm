@@ -10,5 +10,29 @@
     <result column="sh_type" property="shType" jdbcType="VARCHAR" />
     <result column="sh_remark" property="shRemark" jdbcType="VARCHAR" />
   </resultMap>
-  
+  <select id="selectPageListUseDyc" parameterType="page"
+		resultMap="storeHouseResultMap">
+		select * from store_house
+		<where>
+			<if test="paramEntity.shName!=null">
+				and sh_name like #{paramEntity.shName}
+			</if>
+			<if test="paramEntity.shAddress!=null">
+				and sh_address like #{paramEntity.shAddress}
+			</if>
+		</where>
+		limit #{start},#{rows}
+	</select>
+	<!-- 通过多条件分类查询，返回总记录数 -->
+	<select id="selectPageCountUseDyc" parameterType="page" resultType="Integer">
+		select count(1) from store_house 
+		<where>
+			<if test="paramEntity.shName!=null">
+				and sh_name like #{paramEntity.shName}
+			</if>
+			<if test="paramEntity.shAddress!=null">
+				and sh_address like #{paramEntity.shAddress}
+			</if>
+		</where>
+	</select>
 </mapper>

@@ -12,7 +12,7 @@
 <script type="text/javascript">
 	$(function() {
 		$('#dg').datagrid({
-			url : '#',
+			url : '${proPath}/storeHouse/selectPageUseDyc.action',
 			fitColumns : true,
 			nowrap : true,
 			//idField
@@ -20,12 +20,15 @@
 			rownumbers : true,
 			pageSize : 5,
 			pageList : [ 3, 5, 10 ],
-			//queryParams:{},
+			queryParams:{
+				shName:'%%',
+				shAddress:'%%'
+			},
 			toolbar : [ {
-				iconCls : 'icon-edit',
+				iconCls : 'icon-add',
 				text : '新增',
 				handler : function() {
-					alert('编辑按钮')
+					alert('新增按钮')
 				}
 			}, '-', {
 				iconCls : 'icon-edit',
@@ -40,7 +43,9 @@
 					alert('删除按钮')
 				}
 			}, '-', {
-				text : "<input type='text' id='ss' name='keyWord'/>"
+				text : "仓库名称：<input type='text' id='shName' name='shName'/>"
+			}, '-', {
+				text : "联系地址：<input type='text' id='shAddress' name='shAddress'/>"
 			} ],
 
 			columns : [ [
@@ -48,48 +53,51 @@
 					checkbox : true
 				},
 				{
-					field : 'shid',
+					field : 'shId',
 					title : '仓库编号',
 					width : 100
 				},
 				{
-					field : 'shname',
+					field : 'shName',
 					title : '仓库名称',
 					width : 100
 				},
 				{
-					field : 'shresponsible',
+					field : 'shResponsible',
 					title : '责任人',
 					width : 100,
 				},
 				{
-					field : 'shphone',
+					field : 'shPhone',
 					title : '联系电话',
 					width : 100,
 				},
 				{
-					field : 'shaddress',
+					field : 'shAddress',
 					title : '联系地址',
 					width : 100,
 				},
 				{
-					field : 'shtype',
+					field : 'shType',
 					title : '仓库类型',
 					width : 100,
 				},
 				{
-					field : 'shremark',
+					field : 'shRemark',
 					title : '备注',
 					width : 100,
 				}
 			] ]
 		});
 		//搜索框
-		$('#ss').searchbox({
+		$('#shAddress').searchbox({
 			searcher : function(value, name) {
-				alert(value + "," + name)
+				$('#dg').datagrid('load', {
+					shName : '%' + $('#shName').val() + '%',
+					shAddress : '%' + value + '%',
+				});
 			},
-			prompt : '输入要搜索的供应商名称'
+			prompt : '输入后点击搜索→'
 		});
 	});
 </script>

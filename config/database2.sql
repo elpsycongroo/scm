@@ -28,3 +28,9 @@ insert into goods (goods_Id,goods_name,goods_unit,goods_color,goods_remark,goods
 values('2','note5','部','5','red note5',3500.00,3000.00);
 insert into goods (goods_Id,goods_name,goods_unit,goods_color,goods_remark,goods_sel_price,goods_buy_price)
 values('3','note6','部','6','blue note5',4500.00,4000.00);
+/*添加仓库信息*/
+INSERT INTO `store_house` (`sh_id`, `sh_name`, `sh_responsible`, `sh_phone`, `sh_address`, `sh_type`, `sh_remark`) VALUES ('1', '主仓库', NULL, NULL, '广东省广州市', NULL, NULL);
+INSERT INTO `store_house` (`sh_id`, `sh_name`, `sh_responsible`, `sh_phone`, `sh_address`, `sh_type`, `sh_remark`) VALUES ('2', '深圳分仓库', NULL, NULL, '广东省深圳市', NULL, NULL);
+INSERT INTO `store_house` (`sh_id`, `sh_name`, `sh_responsible`, `sh_phone`, `sh_address`, `sh_type`, `sh_remark`) VALUES ('3', '广州分仓库1', NULL, NULL, '广东省广州市', NULL, NULL);
+INSERT INTO `store_house` (`sh_id`, `sh_name`, `sh_responsible`, `sh_phone`, `sh_address`, `sh_type`, `sh_remark`) VALUES ('4', '佛山分仓库', '零司机', '13242526235', '广东省佛山市', NULL, NULL);
+INSERT INTO `store_house` (`sh_id`, `sh_name`, `sh_responsible`, `sh_phone`, `sh_address`, `sh_type`, `sh_remark`) VALUES ('5', '重庆分仓库', 'PV', NULL, '重庆市', NULL, NULL);
