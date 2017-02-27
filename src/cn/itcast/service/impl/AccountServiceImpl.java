@@ -53,6 +53,12 @@ public class AccountServiceImpl implements AccountService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public void deleteList(String[] pks) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
 	
 
 }

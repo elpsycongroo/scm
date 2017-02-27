@@ -51,4 +51,9 @@ public class SupplierServiceImpl implements SupplierService {
 		return page;
 	}
 
+	@Override
+	public void deleteList(String[] pks) throws Exception {
+		supplierMapper.deleteList(pks);
+	}
+
 }

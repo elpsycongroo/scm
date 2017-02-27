@@ -12,7 +12,8 @@
 		<result column="sup_type" property="supType" jdbcType="VARCHAR" />
 	</resultMap>
 	<insert id="insert" parameterType="Supplier">
-		insert into supplier (sup_name) values(#{supName})
+		insert into supplier (sup_id,sup_name,sup_address,sup_Linkman,sup_phone,sup_remark,sup_pay,sup_type) 
+			values(#{supId},#{supName},#{supAddress},#{supLinkman},#{supPhone},#{supRemark},#{supPay},#{supType})
 	</insert>
 	<!-- 通过关键字分页查询，返回数据集 -->
 	<select id="selectPageList" parameterType="page" resultMap="supplierResultMap">
@@ -35,7 +36,7 @@
 				and sup_name like #{paramEntity.supName}
 			</if>
 			<if test="paramEntity.supLinkman!=null">
-				and sup_Linkman like #{paramEntity.supLinkman}
+				and sup_linkman like #{paramEntity.supLinkman}
 			</if>
 			<if test="paramEntity.supPhone!=null">
 				and sup_phone like #{paramEntity.supPhone}
@@ -66,7 +67,7 @@
 				and sup_name like #{paramEntity.supName}
 			</if>
 			<if test="paramEntity.supLinkman!=null">
-				and sup_Linkman like #{paramEntity.supLinkman}
+				and sup_linkman like #{paramEntity.supLinkman}
 			</if>
 			<if test="paramEntity.supPhone!=null">
 				and sup_phone like #{paramEntity.supPhone}
@@ -85,5 +86,13 @@
 			</if>
 		</where>
 	</select>
+	<!-- 通过主键批量删除供应商 -->
+	<delete id="deleteList">
+		delete from supplier where sup_id in 
+		<!-- 如果是数组是array 列表为list 开头 结尾 用什么符号分割-->
+		<foreach collection="array" open="(" close=")" separator="," item="pk">
+			#{pk}
+		</foreach>
+	</delete>
 </mapper>
 

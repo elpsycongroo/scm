@@ -4,9 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -21,14 +20,25 @@ public class SupplierAction extends BaseAction {
 	private SupplierService supplierService;
 	
 	@RequestMapping("/insert")
-	public String insert(Supplier supplier){
+	@ResponseBody
+	public Object insert(Supplier supplier){
+		int i = 0;
 		System.out.println("---action.supplier:"+supplier);
 		try{
 			supplierService.insert(supplier);
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		return "forward:/jsp/main.jsp";
+		return i;
+	}
+	@RequestMapping("/deleteList")
+	@ResponseBody
+	public Object deleteList(String[] pks) throws Exception{
+		System.out.println("---doAjax.deleteList:"+pks);
+		supplierService.deleteList(pks);
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("msg", "success");
+		return map;
 	}
 	
 	//通过关键字分页查询

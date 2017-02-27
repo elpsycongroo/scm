@@ -51,4 +51,10 @@ public class StoreHouseServiceImpl implements StoreHouseService {
 		return page;
 	}
 
+	@Override
+	public void deleteList(String[] pks) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

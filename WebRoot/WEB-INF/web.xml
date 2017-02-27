@@ -25,10 +25,20 @@
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
+  <servlet>
+    <servlet-name>SysInitServlet</servlet-name>
+    <servlet-class>cn.itcast.servlets.SysInitServlet</servlet-class>
+    <load-on-startup>2</load-on-startup>
+  </servlet>
+
 	<servlet-mapping>
 		<servlet-name>mvc</servlet-name>
 		<url-pattern>*.action</url-pattern>
 	</servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SysInitServlet</servlet-name>
+    <url-pattern>/servlet/SysInitServlet</url-pattern>
+  </servlet-mapping>
 	<!-- 编码过滤器配置 -->
 	<filter>
 		<filter-name>encodingFilter</filter-name>
