@@ -46,8 +46,9 @@ public class GoodsServiceImpl implements GoodsService {
 
 	@Override
 	public Page<Goods> selectPageUseDyc(Page<Goods> page) {
-		// TODO Auto-generated method stub
-		return null;
+		page.setList(goodsMapper.selectPageListUseDyc(page));
+		page.setTotalRecord(goodsMapper.selectPageCountUseDyc(page));		
+		return page;
 	}
 
 }

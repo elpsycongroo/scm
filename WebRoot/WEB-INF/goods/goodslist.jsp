@@ -15,7 +15,7 @@
 <script>
 	$(function() {
 		$('#dg').datagrid({
-			url : '${proPath}/datagrid_data1.json',
+			url : '${proPath}/goods/selectPageUseDyc.action',
 			fitColumns : true,
 			nowrap : true,
 			//idField
@@ -23,7 +23,10 @@
 			rownumbers : true,
 			pageSize : 5,
 			pageList : [ 3, 5, 10 ],
-			//queryParams:{},
+			queryParams : {
+				goodsName : "%%",
+				goodsColor : "%%"
+			},
 			toolbar : [ {
 				iconCls : 'icon-add',
 				text : '新增',
@@ -43,7 +46,9 @@
 					alert('删除按钮')
 				}
 			}, '-', {
-				text : "<input type='text' id='ss' name='keyWord'/>"
+				text : "产品名称：<input type='text' id='goodsName' name='goodsName'/>"
+			}, '-', {
+				text : "产品颜色：<input type='text' id='goodsColor' name='goodsColor'/>"
 			} ],
 
 			columns : [ [
@@ -51,29 +56,86 @@
 					checkbox : true
 				},
 				{
-					field : 'productid',
-					title : '产品编号',
+					field : 'goodsId',
+					title : '商品编号',
 					width : 100
 				},
 				{
-					field : 'productname',
-					title : '产品名称',
+					field : 'goodsName',
+					title : '商品名称',
 					width : 100
 				},
 				{
-					field : 'listprice',
-					title : '价格',
+					field : 'goodsUnit',
+					title : '单位',
+					width : 100,
+					align : 'right'
+				},
+				{
+					field : 'goodsType',
+					title : '商品类型',
+					width : 100,
+					align : 'right'
+				},
+				{
+					field : 'goodsColor',
+					title : '商品颜色',
+					width : 100,
+					align : 'right'
+				},
+				{
+					field : 'goodsStore',
+					title : '库存下限',
+					width : 100,
+					align : 'right'
+				},
+				{
+					field : 'goodsLimit',
+					title : '有效的修改时间',
+					width : 100,
+					align : 'right'
+				},
+				{
+					field : 'goodsCommission',
+					title : '提成',
+					width : 100,
+					align : 'right'
+				},
+				{
+					field : 'goodsProducer',
+					title : '生产商',
+					width : 100,
+					align : 'right'
+				},
+				{
+					field : 'goodsRemark',
+					title : '备注',
+					width : 100,
+					align : 'right'
+				},
+				{
+					field : 'goodsSelPrice',
+					title : '售价',
+					width : 100,
+					align : 'right'
+				},
+				{
+					field : 'goodsBuyPrice',
+					title : '进价',
 					width : 100,
 					align : 'right'
 				}
 			] ]
 		});
 		//搜索框
-		$('#ss').searchbox({
+		$('#goodsColor').searchbox({
 			searcher : function(value, name) {
-				alert(value + "," + name)
+				$('#dg').datagrid('load', {
+					goodsName : '%' + $('#goodsName').val() + '%',
+					goodsColor : '%' + value + '%',
+				});
 			},
-			prompt : '输入要搜索的供应商名称'
+			prompt : '点击搜索→'
 		});
 	});
 </script>

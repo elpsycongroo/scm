@@ -15,5 +15,27 @@
     <result column="goods_sel_price" property="goodsSelPrice" jdbcType="DECIMAL" />
     <result column="goods_buy_price" property="goodsBuyPrice" jdbcType="DECIMAL" />
   </resultMap>
-  
+  <select id="selectPageListUseDyc" parameterType="page" resultMap="goodsResultMap">
+  	select * from goods
+  	<where>
+  		<if test="paramEntity.goodsName!=null">
+  			and goods_name like #{paramEntity.goodsName}
+  		</if>
+  		<if test="paramEntity.goodsColor!=null">
+  			and goods_color like #{paramEntity.goodsColor}
+  		</if>
+  	</where>
+  	limit #{start},#{rows}
+  </select>
+  <select id="selectPageCountUseDyc" parameterType="page" resultType="Integer">
+  	select count(1) from goods 
+  	<where>
+  		<if test="paramEntity.goodsName!=null">
+  			and goods_name like #{paramEntity.goodsName}
+  		</if>
+  		<if test="paramEntity.goodsColor!=null">
+  			and goods_color like #{paramEntity.goodsColor}
+  		</if>
+  	</where>
+  </select>
 </mapper>
