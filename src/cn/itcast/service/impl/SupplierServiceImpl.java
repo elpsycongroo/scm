@@ -21,7 +21,7 @@ public class SupplierServiceImpl implements SupplierService {
 
 	@Override
 	public void update(Supplier entity) throws Exception {
-		// TODO Auto-generated method stub
+		supplierMapper.update(entity);
 		
 	}
 

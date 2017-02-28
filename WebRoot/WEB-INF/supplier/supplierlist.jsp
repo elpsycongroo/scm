@@ -37,6 +37,7 @@
 				handler : function() {
 					alert('新增按钮'),
 					parent.$('#win').window({
+						title : '新增供应商',
 						width : 600,
 						height : 400,
 						modal : true,
@@ -47,7 +48,20 @@
 				iconCls : 'icon-edit',
 				text : '修改',
 				handler : function() {
-					alert('修改按钮')
+					//判断是否选中一行，并且只能选中一行进行修改
+					var array = $("#dg").datagrid("getSelections");
+					if(array.length != 1){
+						$.messager.alert('修改错误', '选中修改的记录有且只能选中一条', 'error');
+						return false;
+					}
+					//弹出修改窗体
+					parent.$('#win').window({
+						title : '修改供应商',
+						width : 600,
+						height : 400,
+						modal : true,
+						content : "<iframe src='${proPath}/base/goURL/supplier/update.action' height='100%' width='100%' frameborder='0px' ></iframe>"
+					});
 				}
 			}, '-', {
 				iconCls : 'icon-remove',

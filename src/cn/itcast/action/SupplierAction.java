@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
+
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,7 +24,7 @@ public class SupplierAction extends BaseAction {
 	@ResponseBody
 	public Object insert(Supplier supplier){
 		String msg = "success";
-		System.out.println("---action.supplier:"+supplier);
+		System.out.println("---action.insert:"+supplier);
 		try{
 			supplierService.insert(supplier);
 		}catch(Exception e){
@@ -39,6 +41,20 @@ public class SupplierAction extends BaseAction {
 		Map<String,Object> map = new HashMap<String, Object>();
 		map.put("msg", "success");
 		return map;
+	}
+	
+	@RequestMapping("/update")
+	@ResponseBody
+	public Object Update(Supplier supplier){
+		String msg = "success";
+		System.out.println("---action.update:"+supplier);
+		try{
+			supplierService.update(supplier);
+		}catch(Exception e){
+			msg = "e";
+			e.printStackTrace();
+		}
+		return msg;
 	}
 	
 	//通过关键字分页查询

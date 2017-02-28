@@ -12,8 +12,9 @@
 		<result column="sup_type" property="supType" jdbcType="VARCHAR" />
 	</resultMap>
 	<insert id="insert" parameterType="Supplier">
-		insert into supplier (sup_id,sup_name,sup_address,sup_Linkman,sup_phone,sup_remark,sup_pay,sup_type) 
-			values(#{supId},#{supName},#{supAddress},#{supLinkman},#{supPhone},#{supRemark},#{supPay},#{supType})
+		insert into supplier
+		(sup_id,sup_name,sup_address,sup_Linkman,sup_phone,sup_remark,sup_pay,sup_type)
+		values(#{supId},#{supName},#{supAddress},#{supLinkman},#{supPhone},#{supRemark},#{supPay},#{supType})
 	</insert>
 	<!-- 通过关键字分页查询，返回数据集 -->
 	<select id="selectPageList" parameterType="page" resultMap="supplierResultMap">
@@ -57,8 +58,9 @@
 		limit #{start},#{rows}
 	</select>
 	<!-- 通过多条件分类查询，返回总记录数 -->
-	<select id="selectPageCountUseDyc" parameterType="page" resultType="Integer">
-		select count(1) from supplier 
+	<select id="selectPageCountUseDyc" parameterType="page"
+		resultType="Integer">
+		select count(1) from supplier
 		<where>
 			<if test="paramEntity.supId!=null">
 				and sup_Id like #{paramEntity.supId}
@@ -88,11 +90,18 @@
 	</select>
 	<!-- 通过主键批量删除供应商 -->
 	<delete id="deleteList">
-		delete from supplier where sup_id in 
-		<!-- 如果是数组是array 列表为list 开头 结尾 用什么符号分割-->
-		<foreach collection="array" open="(" close=")" separator="," item="pk">
+		delete from supplier where sup_id in
+		<!-- 如果是数组是array 列表为list 开头 结尾 用什么符号分割 -->
+		<foreach collection="array" open="(" close=")" separator=","
+			item="pk">
 			#{pk}
 		</foreach>
 	</delete>
+	<!-- 根据主键修改供应商信息 -->
+	<update id="update" parameterType="supplier">
+		update supplier set
+		sup_name=#{supName},sup_address=#{supAddress},sup_linkman=#{supLinkman},sup_phone=#{supPhone},sup_remark=#{supRemark},sup_pay=#{supPay},sup_type=#{supType}
+		where sup_id=#{supId}
+	</update>
 </mapper>
 
