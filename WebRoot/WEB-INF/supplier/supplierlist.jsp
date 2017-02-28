@@ -77,10 +77,10 @@
 										pks : ids
 									},
 									success : function(html) {
-										//重新刷新页面
-										$("#dg").datagrid("reload");
-										//请除所有勾选的行 否则IDFILED属性依旧会记录曾经勾选过的值
-										$("#dg").datagrid("clearSelections");
+											//重新刷新页面
+											$("#dg").datagrid("reload");
+											//请除所有勾选的行 否则IDFILED属性依旧会记录曾经勾选过的值
+											$("#dg").datagrid("clearSelections");
 									},
 									error : function(XMLHttpRequest, textStatus, errorThrown) {
 										$.messager.alert('删除错误', '请联系管理员！', 'error');
