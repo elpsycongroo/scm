@@ -1,41 +1,63 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="cn.itcast.dao.GoodsMapper" >
-  <resultMap id="goodsResultMap" type="cn.itcast.entity.Goods" >
-    <id column="goods_Id" property="goodsId" jdbcType="VARCHAR" />
-    <result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
-    <result column="goods_unit" property="goodsUnit" jdbcType="VARCHAR" />
-    <result column="goods_type" property="goodsType" jdbcType="VARCHAR" />
-    <result column="goods_color" property="goodsColor" jdbcType="VARCHAR" />
-    <result column="goods_store" property="goodsStore" jdbcType="INTEGER" />
-    <result column="goods_limit" property="goodsLimit" jdbcType="INTEGER" />
-    <result column="goods_commission" property="goodsCommission" jdbcType="DECIMAL" />
-    <result column="goods_producer" property="goodsProducer" jdbcType="VARCHAR" />
-    <result column="goods_remark" property="goodsRemark" jdbcType="VARCHAR" />
-    <result column="goods_sel_price" property="goodsSelPrice" jdbcType="DECIMAL" />
-    <result column="goods_buy_price" property="goodsBuyPrice" jdbcType="DECIMAL" />
-  </resultMap>
-  <select id="selectPageListUseDyc" parameterType="page" resultMap="goodsResultMap">
-  	select * from goods
-  	<where>
-  		<if test="paramEntity.goodsName!=null">
-  			and goods_name like #{paramEntity.goodsName}
-  		</if>
-  		<if test="paramEntity.goodsColor!=null">
-  			and goods_color like #{paramEntity.goodsColor}
-  		</if>
-  	</where>
-  	limit #{start},#{rows}
-  </select>
-  <select id="selectPageCountUseDyc" parameterType="page" resultType="Integer">
-  	select count(1) from goods 
-  	<where>
-  		<if test="paramEntity.goodsName!=null">
-  			and goods_name like #{paramEntity.goodsName}
-  		</if>
-  		<if test="paramEntity.goodsColor!=null">
-  			and goods_color like #{paramEntity.goodsColor}
-  		</if>
-  	</where>
-  </select>
+<mapper namespace="cn.itcast.dao.GoodsMapper">
+	<resultMap id="goodsResultMap" type="cn.itcast.entity.Goods">
+		<id column="goods_Id" property="goodsId" jdbcType="VARCHAR" />
+		<result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
+		<result column="goods_unit" property="goodsUnit" jdbcType="VARCHAR" />
+		<result column="goods_type" property="goodsType" jdbcType="VARCHAR" />
+		<result column="goods_color" property="goodsColor" jdbcType="VARCHAR" />
+		<result column="goods_store" property="goodsStore" jdbcType="INTEGER" />
+		<result column="goods_limit" property="goodsLimit" jdbcType="INTEGER" />
+		<result column="goods_commission" property="goodsCommission"
+			jdbcType="DECIMAL" />
+		<result column="goods_producer" property="goodsProducer"
+			jdbcType="VARCHAR" />
+		<result column="goods_remark" property="goodsRemark" jdbcType="VARCHAR" />
+		<result column="goods_sel_price" property="goodsSelPrice"
+			jdbcType="DECIMAL" />
+		<result column="goods_buy_price" property="goodsBuyPrice"
+			jdbcType="DECIMAL" />
+	</resultMap>
+	<insert id="insert" parameterType="Goods">
+		insert into goods (goods_Id,goods_name,goods_unit,goods_type,goods_color,
+		goods_store,goods_limit,goods_commission,goods_producer,goods_remark,
+		goods_sel_price,goods_buy_price)
+		values(#{goodsId},#{goodsName},#{goodsUnit},#{goodsType},#{goodsColor},#{goodsStore},
+		#{goodsLimit},#{goodsCommission},#{goodsProducer},#{goodsRemark},
+		#{goodsSelPrice},#{goodsBuyPrice})
+	</insert>
+	<delete id="deleteList">
+		delete from goods where goods_id in
+		<!-- 如果是数组是array 列表为list 开头 结尾 用什么符号分割 -->
+		<foreach collection="array" open="(" close=")" separator=","
+			item="pk">
+			#{pk}
+		</foreach>
+	</delete>
+	<select id="selectPageListUseDyc" parameterType="page"
+		resultMap="goodsResultMap">
+		select * from goods
+		<where>
+			<if test="paramEntity.goodsName!=null">
+				and goods_name like #{paramEntity.goodsName}
+			</if>
+			<if test="paramEntity.goodsColor!=null">
+				and goods_color like #{paramEntity.goodsColor}
+			</if>
+		</where>
+		limit #{start},#{rows}
+	</select>
+	<select id="selectPageCountUseDyc" parameterType="page"
+		resultType="Integer">
+		select count(1) from goods
+		<where>
+			<if test="paramEntity.goodsName!=null">
+				and goods_name like #{paramEntity.goodsName}
+			</if>
+			<if test="paramEntity.goodsColor!=null">
+				and goods_color like #{paramEntity.goodsColor}
+			</if>
+		</where>
+	</select>
 </mapper>

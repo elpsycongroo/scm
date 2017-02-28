@@ -62,6 +62,7 @@
 			<div title="系统介绍" style="padding:20px;">这里可以写系统或公司的相关介绍等等 </div>
 		</div>
 	</div>
+	<!-- 作为父窗口弹出备用 -->
 	<div id="win"></div>
 </body>
 </html>

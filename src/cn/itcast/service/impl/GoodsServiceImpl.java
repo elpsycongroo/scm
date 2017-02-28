@@ -16,8 +16,7 @@ public class GoodsServiceImpl implements GoodsService {
 	
 	@Override
 	public void insert(Goods entity) throws Exception {
-		// TODO Auto-generated method stub
-		
+		goodsMapper.insert(entity);	
 	}
 
 	@Override
@@ -53,8 +52,7 @@ public class GoodsServiceImpl implements GoodsService {
 
 	@Override
 	public void deleteList(String[] pks) throws Exception {
-		// TODO Auto-generated method stub
-		
+		goodsMapper.deleteList(pks);
 	}
 
 }

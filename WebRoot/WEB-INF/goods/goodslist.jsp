@@ -18,7 +18,7 @@
 			url : '${proPath}/goods/selectPageUseDyc.action',
 			fitColumns : true,
 			nowrap : true,
-			//idField
+			idField : 'goodsId',
 			pagination : true,
 			rownumbers : true,
 			pageSize : 5,
@@ -31,7 +31,12 @@
 				iconCls : 'icon-add',
 				text : '新增',
 				handler : function() {
-					alert('新增按钮')
+					parent.$('#win').window({
+						width : 600,
+						height : 400,
+						modal : true,
+						content : "<iframe src='${proPath}/base/goURL/goods/insert.action' height='100%' width='100%' frameborder='0px' ></iframe>"
+					});
 				}
 			}, '-', {
 				iconCls : 'icon-edit',
@@ -43,7 +48,51 @@
 				iconCls : 'icon-remove',
 				text : '删除',
 				handler : function() {
-					alert('删除按钮')
+					//获取选中的记录
+					var array = $("#dg").datagrid("getSelections");
+					//alert(array);
+					//判断是否选中
+					if (array.length > 0) {
+						//定义数组，通过下边的用来存储选中记录的Id
+						var ids = new Array();
+						for (i = 0; i < array.length; i++) {
+							ids[i] = array[i].goodsId;
+						//alert(ids[i]);
+						}
+						//alert("ids" + ids);
+						//如果需要锁整个页面，前面加parent.
+						parent.$.messager.confirm('删除对话框', '您确认要删除吗？', function(r) {
+							if (r) {
+								$.ajax({
+									url : "${proPath}/goods/deleteList.action",
+									type : "POST",
+									//设置为传统方式传送参数 不加的会传pks[]
+									traditional : true,
+									data : {
+										pks : ids
+									},
+									success : function(html) {
+										//重新刷新页面
+										$("#dg").datagrid("reload");
+										//请除所有勾选的行 否则IDFILED属性依旧会记录曾经勾选过的值
+										$("#dg").datagrid("clearSelections");
+									},
+									error : function(XMLHttpRequest, textStatus, errorThrown) {
+										$.messager.alert('删除错误', '请联系管理员！', 'error');
+									},
+									dataType : 'json'
+								});
+							}
+						});
+
+					} else {
+						$.messager.show({
+							title : '操作提示',
+							msg : '请先选择要删除的记录。',
+							timeout : 4000,
+							showType : 'slide'
+						});
+					}
 				}
 			}, '-', {
 				text : "产品名称：<input type='text' id='goodsName' name='goodsName'/>"
