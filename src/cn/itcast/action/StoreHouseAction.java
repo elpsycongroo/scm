@@ -1,11 +1,15 @@
 package cn.itcast.action;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import cn.itcast.entity.Goods;
 import cn.itcast.entity.Page;
 import cn.itcast.entity.StoreHouse;
 import cn.itcast.entity.Supplier;
@@ -27,4 +31,42 @@ public class StoreHouseAction extends BaseAction {
 		Page<StoreHouse> p = storeHouseService.selectPageUseDyc(page);
 		return p.getPageMap();
 	}
+	
+	@RequestMapping("insert")
+	@ResponseBody
+	public Object Insert(StoreHouse storeHouse){
+		int i = 0;
+		System.out.println("---action.insert:"+storeHouse);
+		try{
+			storeHouseService.insert(storeHouse);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return i;
+	}
+	
+	@RequestMapping("update")
+	@ResponseBody
+	public Object Update(StoreHouse storeHouse){
+		String msg = "success";
+		System.out.println("---action.update:" + storeHouse);
+		try {
+			storeHouseService.update(storeHouse);
+		} catch (Exception e) {
+			msg = "e";
+			e.printStackTrace();
+		}
+		return msg;
+	}
+	
+	@RequestMapping("deleteList")
+	@ResponseBody
+	public Object deleteByList(String[] pks) throws Exception{
+		System.out.println("---doAjax.deleteList:"+pks);
+		storeHouseService.deleteList(pks);
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("msg", "success");
+		return map;		
+	}
+	
 }

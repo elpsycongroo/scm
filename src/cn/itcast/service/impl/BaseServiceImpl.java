@@ -9,17 +9,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import cn.itcast.dao.AccountMapper;
 import cn.itcast.dao.BaseMapper;
+import cn.itcast.dao.GoodsMapper;
+import cn.itcast.dao.StoreHouseMapper;
 import cn.itcast.dao.SupplierMapper;
 import cn.itcast.entity.Page;
 import cn.itcast.service.BaseService;
 
 public class BaseServiceImpl<T> implements BaseService<T> {
 
+	/**
+	 * 注入dao层 定义相关字段
+	 */
+	
 	@Autowired
 	protected SupplierMapper supplierMapper;
 	
 	@Autowired
 	protected AccountMapper accountMapper;
+	
+	@Autowired
+	protected GoodsMapper goodsMapper;
+	
+	@Autowired
+	protected StoreHouseMapper storeHouseMapper;
 	
 	protected BaseMapper<T> baseMapper;
 	
@@ -35,6 +47,7 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 		System.out.println("======this: " + this);
 		System.out.println("======父类基本信息： " + this.getClass().getSuperclass());
 		System.out.println("======父类和泛型的信息： " + this.getClass().getGenericSuperclass());
+		
 		//通过反射获取类
 		ParameterizedType type = (ParameterizedType) this.getClass().getGenericSuperclass();
 		//获取第一个参数的class(子类Class名)->例：Supplier.class
@@ -45,11 +58,13 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 			= clazz.getSimpleName().substring(0,1).toLowerCase() 
 				+ clazz.getSimpleName().substring(1) + "Mapper";
 		System.out.println("=====localField:" + localField);
+		
 		//getDeclaredField:使用包括私有、默认、受保护、公共字段。但不包括继承的字段
+		//拿到字段相对应的对象
 		Field field = this.getClass().getSuperclass().getDeclaredField(localField);
 		System.out.println("======field:" + field);
 		System.out.println("======field 相应的对象：" + field.get(this));
-		//获得baseField的所有字段
+		//获得baseField字段中对应baseMapper的字段，再用get(this)取得其对象(实现类)
 		Field baseField = this.getClass().getSuperclass().getDeclaredField("baseMapper");
 		System.out.println("======baseField:" + baseField);
 		System.out.println("======baseField对应的对象：" + baseField.get(this));
@@ -57,6 +72,7 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 		 * field.get(this):获取当前this的field字段的值。例如：
 		 * Supplier对象中，baseMapper所指向的对象为其子类型SupplierMapper对象，
 		 * 子类型对象已被spring实例化于容器中.
+		 * 将field字段对应的对象设置入baseField对应的对象储存位置中
 		 */
 		baseField.set(this, field.get(this));//反射后baseMapper对象已经有了子类的值
 		System.out.println("=======baseField对应的对象：" + baseMapper);

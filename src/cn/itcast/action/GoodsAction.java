@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,7 +26,7 @@ public class GoodsAction extends BaseAction {
 	@ResponseBody
 	public Object Insert(Goods goods){
 		int i = 0;
-		System.out.println("---action.goods:"+goods);
+		System.out.println("---action.insert:"+goods);
 		try{
 			goodsService.insert(goods);
 		}catch(Exception e){
@@ -34,6 +35,20 @@ public class GoodsAction extends BaseAction {
 		return i;
 	}
 	
+	@RequestMapping("update")
+	@ResponseBody
+	public Object Update(Goods goods){
+		String msg = "success";
+		System.out.println("---action.update:" + goods);
+		try {
+			goodsService.update(goods);
+		} catch (Exception e) {
+			msg = "e";
+			e.printStackTrace();
+		}
+		return msg;
+	}
+		
 	@RequestMapping("deleteList")
 	@ResponseBody
 	public Object deleteByList(String[] pks) throws Exception{

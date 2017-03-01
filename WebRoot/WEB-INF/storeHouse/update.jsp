@@ -39,31 +39,46 @@
 	<script type="text/javascript">
 		$(function() {
 			var win = parent.$("iframe[title='仓库管理']").get(0).contentWindow; //返回iframe页面文档（window)	
+			//拿到被选行
+			var row = win.$('#dg').datagrid("getSelected");
+			$('#ff').form('load', {
+				shId : row.shId,
+				shName: row.shName,
+				shResponsible : row.shResponsible,
+				shPhone : row.shPhone,
+				shAddress : row.shAddress,
+				shType : row.shType,
+				shRemark : row.shRemark
+			});	
 			$("[name='shName']").validatebox({
 				required : true,
 				missingMessage : '请填写仓库名称！'
 			});
 			//禁用验证
-			$("#ff").form("disableValidation");	
+			$("#ff").form("disableValidation");
 			$("#btn").click(function() {
-				//alert("ddddddddddd");
 				//准备验证
 				$("#ff").form("enableValidation");
 				if ($("#ff").form("validate")) {
+					//alert("------------");
 					$('#ff').form('submit', {
-						url : '${proPath}/storeHouse/insert.action',
+						url : '${proPath}/storeHouse/update.action',
 						onSubmit : function() {
 							return true;
 						},
-						success : function(count) {
+						success : function(msg) {
 							//可以定义为对应消息框
-							alert("成功");
+							if (msg == "success") {
+								alert("修改成功");
+							} else {
+								alert("修改失败")
+							}
 							parent.$("#win").window("close");
 							win.$("#dg").datagrid("reload");
 						}
-					});	
-				}	
-			});	
+					});
+				}
+			});
 		});
 	</script>
 </body>

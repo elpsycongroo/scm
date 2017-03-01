@@ -35,4 +35,24 @@
 			</if>
 		</where>
 	</select>
+	<!-- 批量删除 -->
+	<delete id="deleteList">
+		delete from store_house where sh_id in
+		<!-- 如果是数组是array 列表为list 开头 结尾 用什么符号分割 -->
+		<foreach collection="array" open="(" close=")" separator=","
+			item="pk">
+			#{pk}
+		</foreach>
+	</delete>
+	<!-- 根据主键修改信息 -->
+	<update id="update" parameterType="storeHouse">
+		update store_house set
+		sh_phone=#{shPhone},sh_name=#{shName},sh_responsible=#{shResponsible},sh_address=#{shAddress},sh_type=#{shType},sh_remark=#{shRemark}
+		where sh_id=#{shId}
+	</update>
+	<insert id="insert" parameterType="storeHouse">
+		insert into store_house
+		(sh_id,sh_name,sh_phone,sh_responsible,sh_address,sh_type,sh_remark)
+		values(#{shId},#{shName},#{shPhone},#{shResponsible},#{shAddress},#{shType},#{shRemark})
+	</insert>
 </mapper>

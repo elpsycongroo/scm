@@ -7,7 +7,7 @@
 <body>
 	<form id="ff" method="post">
 		<div>
-			<label for="supId">供应商编号:</label> <input type="text" name="supId" />
+			<label for="supId">供应商编号:</label> <input type="text" name="supId" readonly="readonly" />
 		</div>
 		<div>
 			<label for="supName">供应商:</label> <input type="text" name="supName" />
@@ -47,6 +47,18 @@
 	<script type="text/javascript">
 		$(function() {
 			var win = parent.$("iframe[title='供应商管理']").get(0).contentWindow; //返回iframe页面文档（window)	
+			//拿到被选行
+			var row = win.$('#dg').datagrid("getSelected");
+			$('#ff').form('load', {
+				supId : row.supId,
+				supName: row.supName,
+				supAddress : row.supAddress,
+				supType : row.supType,
+				supPay : row.supPay,
+				supLinkman:row.supLinkman,
+				supPhone:row.supPhone,
+				supRemark:row.supRemark
+			});	
 			$("[name='supName']").validatebox({
 				required : true,
 				missingMessage : '请填写供应商！'
@@ -60,30 +72,30 @@
 				missingMessage : '请填写联系电话！'
 			});
 			//禁用验证
-			$("#ff").form("disableValidation");	
+			$("#ff").form("disableValidation");
 			$("#btn").click(function() {
-				//alert("ddddddddddd");
 				//准备验证
 				$("#ff").form("enableValidation");
 				if ($("#ff").form("validate")) {
+					//alert("------------");
 					$('#ff').form('submit', {
-						url : '${proPath}/supplier/insert.action',
+						url : '${proPath}/supplier/update.action',
 						onSubmit : function() {
 							return true;
 						},
 						success : function(msg) {
 							//可以定义为对应消息框
-							if(msg == "success"){
-								alert("添加成功");
-							}else{
-								alert("添加失败")
+							if (msg == "success") {
+								alert("修改成功");
+							} else {
+								alert("修改失败")
 							}
 							parent.$("#win").window("close");
 							win.$("#dg").datagrid("reload");
 						}
-					});	
-				}	
-			});	
+					});
+				}
+			});
 		});
 	</script>
 </body>
