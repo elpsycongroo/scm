@@ -20,15 +20,6 @@
 			fitColumns : true,
 			nowrap : true,
 			idField : 'goodsId',
-			/*
-			pagination : true,
-			rownumbers : true,
-			pageSize : 5,
-			pageList : [ 3, 5, 10 ],
-			queryParams : {
-				goodsName : "%%",
-				goodsColor : "%%"
-			},*/
 			toolbar : [ {
 				iconCls : 'icon-add',
 				text : '选择商品',
@@ -48,12 +39,23 @@
 				text : '删除商品',
 				handler : function() {
 					alert("删除商品");
+					//判断是否选中
+					var array = $("#dg").datagrid("getSelections");
+					if(array.length > 0){
+						for(var i = array.length-1; i >= 0; i --){
+							var index = $("#dg").datagrid("getRowIndex",array[i].goodsId);
+							$("#dg").datagrid("deleteRow",index);
+						}
+					}else{
+						$.messager.alert('提示','请至少选择一条记录！','info');						
+					}
 				}
 			}, '-', {
 				iconCls : 'icon-ok',
 				text : '提交采购',
 				handler : function() {
 					alert("提交采购");
+					$("#ff").form("enableValidation");
 				}
 			} ],
 
@@ -140,6 +142,12 @@
 				},
 				prompt : "请选择供应商"
 			});
+			//禁用供应商信息的输入
+			var box = $('#supName').searchbox('textbox');//获取控件文本框对象
+   	    	box.attr('disabled',true);//禁用输入
+			//表单禁用验证
+   	  		//$("#ff").form("disableValidation");
+			
 	});
 </script>
 

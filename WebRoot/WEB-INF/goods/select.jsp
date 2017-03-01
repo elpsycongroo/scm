@@ -150,9 +150,9 @@
 <body style="margin:0px">
 	<table id="dg"></table>
 	<form action="">
-		数量：<input type="text" id="bodAmount" name="bodAmount"><br>
-		进价：<input type="text" id="bodBuyPrice" name="bodBuyPrice"><br>
-		手机串号：<textarea id="bodImeiList" name="bodImeiList"></textarea>
+		采购数量：<input type="text" id='bodAmount' name='bodAmount' class="easyui-numberbox" value="1" data-options="min:1,max:1000000000">
+		价格：<input type="text" id='bodBuyPrice' name='bodBuyPrice' class="easyui-numberbox"  value="22" data-options="min:0,precision:2">
+		手机串号：<textarea  id='bodImeiList' name='bodImeiList'>3333</textarea>
 	</form>
 	
 </body>

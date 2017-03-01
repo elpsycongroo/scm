@@ -41,7 +41,11 @@
 				handler : function() {
 					//alert('新增按钮'),
 					var row = $("#dg").datagrid("getSelected");
-					
+					win.$("#ff").form('load',{
+						supId : row.supId,
+						supName : row.supName
+					});
+					parent.$("#win").window("close");
 				}
 			},'-',
 				{
