@@ -53,6 +53,18 @@
 					</li>
 				</ul>
 			</div>
+			<div title="进货管理">
+				<ul style="list-style: none;padding: 0px;margin:0px;">
+				<!--href="${proPath}/base/goURL/supplier/supplierlist.action" 也是传给方法的参数，详见BaseAction的定义 -->
+					<li style="padding: 6px;"><a
+						href="${proPath}/base/goURL/buyorder/insert.action" title="商品采购"
+						style="text-decoration: none;display: block;font-weight:bold;">商品采购</a>
+					</li>
+					<li style="padding: 6px;"><a href="${proPath}/base/goURL/buyorder/insert.action" title="商品退货"
+						style="text-decoration: none;display: block;font-weight:bold;">商品退货(末实现)</a>
+					</li>
+				</ul>
+			</div>
 		</div>
 	</div>
 	<!-- 主要内容 -->
