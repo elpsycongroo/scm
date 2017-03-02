@@ -14,7 +14,7 @@
 
 <script>
 	$(function() {
-
+		$("#ff").form("disableValidation");
 		$('#dg').datagrid({
 			//url : '${proPath}/goods/selectPageUseDyc.action',
 			fitColumns : true,
@@ -56,6 +56,28 @@
 				handler : function() {
 					alert("提交采购");
 					$("#ff").form("enableValidation");
+					var data = $("#dg").datagrid("getData");
+					console.info(data);
+					console.info(data.rows);
+					if(data.rows.length == 0){
+						$.messager.alert('提示','请至少选择一条采购信息！','info');
+						return false;
+					}
+					
+					//对象转换成json
+					var rows = JSON.stringify(data.rows);
+					console.info(rows);
+					
+					//提交采购到服务端
+					$('#ff').form('submit', {    
+    					url:'${proPath}/buyOrder/insert.action',    
+   				 		onSubmit: function(param){    
+        					param.rows = rows;    
+    					},
+    					success : function(data){
+    						alert(data);
+    					}    
+					});  			
 				}
 			} ],
 

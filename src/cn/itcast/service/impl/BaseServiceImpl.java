@@ -8,7 +8,10 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import cn.itcast.dao.AccountMapper;
+import cn.itcast.dao.AccountRecordsMapper;
 import cn.itcast.dao.BaseMapper;
+import cn.itcast.dao.BuyOrderDetailMapper;
+import cn.itcast.dao.BuyOrderMapper;
 import cn.itcast.dao.GoodsMapper;
 import cn.itcast.dao.StoreHouseMapper;
 import cn.itcast.dao.SupplierMapper;
@@ -32,6 +35,15 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 	
 	@Autowired
 	protected StoreHouseMapper storeHouseMapper;
+	
+	@Autowired
+	protected BuyOrderMapper buyOrderMapper;
+	
+	@Autowired
+	protected BuyOrderDetailMapper buyOrderDetailMapper;
+	
+	@Autowired
+	protected AccountRecordsMapper accountRecordsMapper;
 	
 	protected BaseMapper<T> baseMapper;
 	

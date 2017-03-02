@@ -44,8 +44,12 @@
 				<table tableName="buy_order" domainObjectName="BuyOrder" />
 				<table tableName="buy_order_detail" domainObjectName="BuyOrderDetail" />
 				
-				<table tableName="goods" domainObjectName="Goods" />-->
+				<table tableName="goods" domainObjectName="Goods" />
 				<table tableName="store_house" domainObjectName="StoreHouse" />
-	
+			<table tableName="account_records" domainObjectName="AccountRecords" />-->
+			<table tableName="buy_order" domainObjectName="BuyOrder" />
+			<table tableName="buy_order_detail" domainObjectName="BuyOrderDetail" />
+			<table tableName="return_order" domainObjectName="ReturnOrder" />
+			<table tableName="return_order_detail" domainObjectName="ReturnOrderDetail" />
 	</context>
 </generatorConfiguration>

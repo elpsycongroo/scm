@@ -164,3 +164,9 @@ create table return_order_detail
    ro_id                varchar(36),
    primary key (rod_id)
 );
+
+
+
+select * from account_records;
+select * from buy_order;
+select * from buy_order_detail;
