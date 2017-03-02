@@ -85,9 +85,13 @@
 						onSubmit : function() {
 							return true;
 						},
-						success : function(count) {
+						success : function(msg) {
 							//可以定义为对应消息框
-							alert("成功");
+							if(msg == "success"){
+								alert("成功");
+							}else{
+								alert("失败");
+							}
 							parent.$("#win").window("close");
 							win.$("#dg").datagrid("reload");
 						}

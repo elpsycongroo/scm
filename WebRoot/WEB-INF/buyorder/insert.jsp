@@ -20,6 +20,7 @@
 			fitColumns : true,
 			nowrap : true,
 			idField : 'goodsId',
+			
 			toolbar : [ {
 				iconCls : 'icon-add',
 				text : '选择商品',
@@ -69,15 +70,19 @@
 					console.info(rows);
 					
 					//提交采购到服务端
-					$('#ff').form('submit', {    
-    					url:'${proPath}/buyOrder/insert.action',    
-   				 		onSubmit: function(param){    
-        					param.rows = rows;    
-    					},
-    					success : function(data){
-    						alert(data);
-    					}    
-					});  			
+					
+					 
+						$('#ff').form('submit', {    
+    						url:'${proPath}/buyOrder/insert.action',    
+   				 			onSubmit: function(param){    
+        						param.rows = rows;
+        						return $('#boDate').form("validate");
+    						},
+    						success : function(data){
+    							alert(data);
+    						}    
+						});
+					 			
 				}
 			} ],
 
@@ -169,7 +174,10 @@
    	    	box.attr('disabled',true);//禁用输入
 			//表单禁用验证
    	  		//$("#ff").form("disableValidation");
-			
+			$('#boDate').validatebox({
+						required : true,
+						missingMessage : '请填写日期！'
+			});
 	});
 </script>
 
