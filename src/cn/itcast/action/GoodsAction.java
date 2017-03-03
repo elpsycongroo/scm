@@ -25,14 +25,15 @@ public class GoodsAction extends BaseAction {
 	@RequestMapping("insert")
 	@ResponseBody
 	public Object Insert(Goods goods){
-		int i = 0;
+		String msg = "success";
 		System.out.println("---action.insert:"+goods);
 		try{
 			goodsService.insert(goods);
 		}catch(Exception e){
+			msg = "e";
 			e.printStackTrace();
 		}
-		return i;
+		return msg;
 	}
 	
 	@RequestMapping("update")
