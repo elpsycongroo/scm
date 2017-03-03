@@ -15,6 +15,7 @@ import cn.itcast.dao.BuyOrderMapper;
 import cn.itcast.dao.GoodsMapper;
 import cn.itcast.dao.StoreHouseMapper;
 import cn.itcast.dao.SupplierMapper;
+import cn.itcast.dao.SysParamMapper;
 import cn.itcast.entity.Page;
 import cn.itcast.service.BaseService;
 
@@ -44,6 +45,9 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 	
 	@Autowired
 	protected AccountRecordsMapper accountRecordsMapper;
+	
+	@Autowired
+	protected SysParamMapper sysParamMapper;
 	
 	protected BaseMapper<T> baseMapper;
 	

@@ -181,7 +181,11 @@
 		请填写采购信息：<br> 
 		供应商：<input type="hidden" id="supId" name="supId" />
 		<input type="text" id="supName" name="supName"/>
-		仓库：<input type="text" id="shId" name="shId" /> 
+		仓库：<select type="text" id="shId" name="shId" >
+			<c:forEach items="${applicationScope.sysParam.shId}" var="shId">
+				<option value="${shId.key}">${shId.value}</option>
+			</c:forEach>
+		</select> 
 		日期：<input type="text" id="boDate" class="easyui-datebox" name="boDate" required="required"></input>
 		应付：<input type="text" id="boPayable" name="boPayable" /><br> 
 		已付：<input type="text" id="boPaid" name="boPaid" /> 

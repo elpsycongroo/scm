@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/base")
 public class BaseAction {
 	@Resource
-	ServletContext applition;
+	ServletContext application;
 
 	// 方法参数folder通过@PathVariable指定其值可以从@RequestMapping的{folder}获取，同理file也一样
 	@RequestMapping("/goURL/{folder}/{file}")
