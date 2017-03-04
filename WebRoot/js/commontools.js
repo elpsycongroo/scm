@@ -13,6 +13,6 @@ function valueToText(str, value) {
 		var array2 = array[i].split("=");
 		if ($.trim(array2[0]) == $.trim(value)) {
 			return array2[1].trim();
-		}
+		}		
 	}
 }

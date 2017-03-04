@@ -99,7 +99,11 @@
 				{
 					field : 'supType',
 					title : '类型',
-					width : 100
+					width : 100,
+					formatter : function(value,row,index){
+						var str = "${applicationScope.sysParam.supType}";
+						return valueToText(str,value);
+					}
 				}
 			] ]
 		});

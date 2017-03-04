@@ -20,6 +20,17 @@ public class SupplierAction extends BaseAction {
 	@Resource
 	private SupplierService supplierService;
 	
+	@RequestMapping("/selectSupplier")
+	@ResponseBody
+	public Object selectSupplier(String start,String end){
+		System.out.println("start:"+ start+"||end:"+end);
+		Map<String, String> paramMap =new HashMap<String, String>();
+		paramMap.put("start", start);
+		paramMap.put("end", end);
+
+		return supplierService.selectSupplier(paramMap);
+	}
+	
 	@RequestMapping("/insert")
 	@ResponseBody
 	public Object insert(Supplier supplier){
